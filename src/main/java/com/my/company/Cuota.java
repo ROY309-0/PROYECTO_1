@@ -13,9 +13,10 @@ public class Cuota {
     public Cuota(BigDecimal montoCuotaP, LocalDate fechaVencimientoP, String estadoP, SolicitudCredito solicitudCreditoAsociadaP){
         validarCampo(montoCuotaP);
         validarCampo(fechaVencimientoP);
+        validarCampo(solicitudCreditoAsociadaP);
         validarFecha(fechaVencimientoP, solicitudCreditoAsociadaP);
         validarCampo(estadoP);
-        validarCampo(solicitudCreditoAsociadaP);
+
 
         this.id = generarId();
         this.montoCuota = montoCuotaP;
@@ -38,6 +39,10 @@ public class Cuota {
 
     public String getEstado() {
         return estado;
+    }
+
+    public SolicitudCredito getSolicitudCreditoAsociada() {
+        return solicitudCreditoAsociada;
     }
 
     private void validarCampo(BigDecimal campo){
