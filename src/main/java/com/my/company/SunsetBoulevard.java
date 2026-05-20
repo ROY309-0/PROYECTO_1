@@ -34,19 +34,14 @@ public class SunsetBoulevard {
         System.out.println("----- SOLICITUD -----");
         System.out.println(s1.toString());
 
-        BigDecimal cantidad = new BigDecimal("317.00");
-        LocalDate fecha = LocalDate.of(2026, 12, 21);
-        Cuota c1 = new Cuota(cantidad, fecha, "PENDIENTE", s1);
-        System.out.println("----- CUOTA -----");
-        System.out.println(c1.toString());
-
         System.out.println("-----SOLICITUD - USUARIO -----");
         SimuladorCredito sc1 = new SimuladorCredito();
+        System.out.println("-------------------------");
         sc1.guardarSolicitud(u1, s1);
-        sc1.guardarSolicitud(u1, s2);
-        sc1.guardarSolicitud(u2, s3);
+        System.out.println(sc1.getCuotasDeSolicitud(s1));
+        System.out.println("-------------------------");
         System.out.println(u1.getNombre()+" : " + sc1.getSolicitudesAsociadasUsuario(u1));
-        System.out.println(u2.getNombre()+" : " + sc1.getSolicitudesAsociadasUsuario(u2));
+        System.out.println("--GENERAR CUOTAS");
 
 
 

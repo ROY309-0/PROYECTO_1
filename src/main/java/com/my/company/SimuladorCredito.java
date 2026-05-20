@@ -1,6 +1,8 @@
 package com.my.company;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,17 +32,41 @@ public class SimuladorCredito {
             solicitudes.add(s);
             listaSolicitudes.put(u.getId(), solicitudes);
         }
+        generarCuotasASolicitud(s);
+    }
 
+    public List<Cuota> getCuotasDeSolicitud(SolicitudCredito s){
+        return listaCuotas.get(s.getId());
+    }
+
+
+
+    private void generarCuotasASolicitud(SolicitudCredito s){
+        validarCampoSolicitud(s);
+        LocalDate inicio = s.getFechaInicio();
+        int cuotas = s.getCantidadCuotas();
+
+        for (int i = 1; i <= cuotas; i++) {
+            Cuota c = new Cuota(calcularMontoCuotas(s.getCantidadPrestada(), s.getCantidadCuotas()), inicio.plusMonths(i), "ACTIVO", s);
+            if (listaCuotas.containsKey(s.getId())){
+                listaCuotas.get(s.getId()).add(c);
+            } else {
+                List<Cuota> cuota = new ArrayList<>();
+                cuota.add(c);
+                listaCuotas.put(s.getId(), cuota);
+            }
+        }
     }
 
     private BigDecimal calcularMontoCuotas(BigDecimal monto, int cuota){
-        return monto.divide(new BigDecimal(cuota));
+        return monto.divide(new BigDecimal(cuota), 2 , RoundingMode.HALF_UP);
     }
 
     //Devolver las solicitudes asociadas al usuario
     public List<SolicitudCredito> getSolicitudesAsociadasUsuario(Usuario usuario){
         return listaSolicitudes.get(usuario.getId());
     }
+
 
 
     private void validarCampoSolicitud(SolicitudCredito s){
