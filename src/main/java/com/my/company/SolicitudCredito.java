@@ -6,16 +6,15 @@ public class SolicitudCredito {
     private int id;
     private static int contador = 0;
     private BigDecimal cantidadPrestada;
-    private String estado; //Trabajare con : PENDIENTE, ACTIVA, PAGADA, RECHAZADA
+    private EstadoSolicitud estado; //Trabajare con : PENDIENTE, ACTIVA, PAGADA, RECHAZADA
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private BigDecimal interes;
     private int cantidadCuotas;
     private Usuario usuarioAsociado;
 
-    public SolicitudCredito(BigDecimal cantidadPrestadaP, String estadoP, LocalDate fechaInicioP, LocalDate fechaFinP, BigDecimal interesP, int cantidadCuotasP, Usuario usuarioP){
+    public SolicitudCredito(BigDecimal cantidadPrestadaP, LocalDate fechaInicioP, LocalDate fechaFinP, BigDecimal interesP, int cantidadCuotasP, Usuario usuarioP){
         validarCampo(cantidadPrestadaP);
-        validarCampo(estadoP, "El estado no puede estar vacio");
         validarCampo(fechaInicioP);
         validarCampo(fechaFinP);
         validarFecha(fechaFinP, fechaInicioP, "La fecha de vencimiento no puede ser la misma de inicio o anterior a ella");
@@ -25,7 +24,7 @@ public class SolicitudCredito {
 
         this.id = generarId();
         this.cantidadPrestada = cantidadPrestadaP;
-        this.estado = estadoP;
+        this.estado = EstadoSolicitud.REVISION;
         this.fechaInicio = fechaInicioP;
         this.fechaFin = fechaFinP;
         this.interes = interesP;
@@ -42,7 +41,7 @@ public class SolicitudCredito {
         return cantidadPrestada;
     }
 
-    public String getEstado(){
+    public EstadoSolicitud getEstado(){
         return estado;
     }
 

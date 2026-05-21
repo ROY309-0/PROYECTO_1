@@ -7,25 +7,20 @@ public class Cuota {
     private static int contador = 0;
     private BigDecimal montoCuota;
     private LocalDate fechaVencimiento;
-    private String estado;
+    private EstadoCuota estado;
     private SolicitudCredito solicitudCreditoAsociada;
 
-    public Cuota(){
-
-    }
-
-    public Cuota(BigDecimal montoCuotaP, LocalDate fechaVencimientoP, String estadoP, SolicitudCredito solicitudCreditoAsociadaP){
+    public Cuota(BigDecimal montoCuotaP, LocalDate fechaVencimientoP, SolicitudCredito solicitudCreditoAsociadaP){
         validarCampo(montoCuotaP);
         validarCampo(fechaVencimientoP);
         validarCampo(solicitudCreditoAsociadaP);
         validarFecha(fechaVencimientoP, solicitudCreditoAsociadaP);
-        validarCampo(estadoP);
 
 
         this.id = generarId();
         this.montoCuota = montoCuotaP;
         this.fechaVencimiento = fechaVencimientoP;
-        this.estado = estadoP;
+        this.estado = EstadoCuota.PENDIENTE;
         this.solicitudCreditoAsociada = solicitudCreditoAsociadaP;
     }
 
@@ -41,7 +36,7 @@ public class Cuota {
         return fechaVencimiento;
     }
 
-    public String getEstado() {
+    public EstadoCuota getEstado() {
         return estado;
     }
 

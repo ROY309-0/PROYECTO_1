@@ -47,7 +47,7 @@ public class SimuladorCredito {
         int cuotas = s.getCantidadCuotas();
 
         for (int i = 1; i <= cuotas; i++) {
-            Cuota c = new Cuota(calcularMontoCuotas(s.getCantidadPrestada(), s.getCantidadCuotas()), inicio.plusMonths(i), "ACTIVO", s);
+            Cuota c = new Cuota(calcularMontoCuotas(s.getCantidadPrestada(), s.getCantidadCuotas()), inicio.plusMonths(i), s);
             if (listaCuotas.containsKey(s.getId())){
                 listaCuotas.get(s.getId()).add(c);
             } else {
