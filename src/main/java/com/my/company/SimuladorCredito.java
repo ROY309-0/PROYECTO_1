@@ -58,9 +58,32 @@ public class SimuladorCredito {
         }
     }
 
+    public List<Cuota> getCuotasVencidasSolicitud(SolicitudCredito s){
+        validarCampoSolicitud(s);
+        LocalDate hoy = LocalDate.of(2024, 5, 12);
+
+        List<Cuota> cuotas = listaCuotas.get(s.getId());
+        List<Cuota> cuotasVencidas = new ArrayList<>();
+        for (Cuota r : cuotas){
+            if (r.getFechaVencimiento().isBefore(hoy)){
+                cuotasVencidas.add(r);
+
+            }
+        }
+
+        return cuotasVencidas;
+
+    }
+
+
+
     private BigDecimal calcularMontoCuotas(BigDecimal monto, int cuota){
         return monto.divide(new BigDecimal(cuota), 2 , RoundingMode.HALF_UP);
     }
+
+
+
+
 
     //Devolver las solicitudes asociadas al usuario
     public List<SolicitudCredito> getSolicitudesAsociadasUsuario(Usuario usuario){

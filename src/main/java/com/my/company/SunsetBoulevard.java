@@ -6,22 +6,24 @@ import java.time.LocalDate;
 public class SunsetBoulevard {
     public static void main(String[] args) {
         System.out.println("----- USUARIO -----");
-        Usuario u1 = new Usuario("Juan", "Benito", "juanito@gmail.com", "6118-2284", "Col, La Gloria");
-        Usuario u2 = new Usuario("Kallax", "Calling", "kallax123@gmail.com", "7123-2884", "Col, Las Nieves");
+        Usuario u1 = new Usuario("Juan", "Perez", "juan@gmail.com", "123456", "Calle 1");
+        //Usuario u2 = new Usuario("Kallax", "Calling", "kallax123@gmail.com", "7123-2884", "Col, Las Nieves");
         System.out.println(u1.toString());
 
-        BigDecimal prestamo = new BigDecimal("12000.00");
-        BigDecimal interesPrestamo = new BigDecimal("12.00");
-        LocalDate fechaI = LocalDate.of(2024, 12, 21);
-        LocalDate fechaF = LocalDate.of(2028, 12, 21);
-        SolicitudCredito s1 = new SolicitudCredito(prestamo, fechaI , fechaF, interesPrestamo, 48, u1);
+        BigDecimal prestamo = new BigDecimal("1000");
+        BigDecimal interesPrestamo = new BigDecimal("0.05");
+        LocalDate fechaI = LocalDate.of(2024, 1, 1);
+        LocalDate fechaF = LocalDate.of(2024, 12, 1);
+        SolicitudCredito s1 = new SolicitudCredito(prestamo, fechaI , fechaF, interesPrestamo, 11, u1);
         System.out.println("----- SOLICITUD -----");
         System.out.println(s1.toString());
+        SimuladorCredito sc1 = new SimuladorCredito();
 
-        BigDecimal prestamo2 = new BigDecimal("1200.00");
+
+        /*BigDecimal prestamo2 = new BigDecimal("1200.00");
         BigDecimal interesPrestamo2 = new BigDecimal("12.00");
-        LocalDate fechaI2 = LocalDate.of(2029, 12, 21);
-        LocalDate fechaF2 = LocalDate.of(2031, 12, 21);
+        LocalDate fechaI2 = LocalDate.of(2024, 12, 21);
+        LocalDate fechaF2 = LocalDate.of(2025, 12, 21);
         SolicitudCredito s2 = new SolicitudCredito(prestamo2,  fechaI2 , fechaF2, interesPrestamo2, 24, u1);
         System.out.println("----- SOLICITUD -----");
         System.out.println(s2.toString());
@@ -35,19 +37,25 @@ public class SunsetBoulevard {
         System.out.println(s3.toString());
 
         System.out.println("-----SOLICITUD - USUARIO -----");
-        SimuladorCredito sc1 = new SimuladorCredito();
+
         System.out.println("-------------------------");
-        sc1.guardarSolicitud(u1, s1);
-        System.out.println(sc1.getCuotasDeSolicitud(s1));
+
+
         sc1.guardarSolicitud(u1, s2);
-        System.out.println(sc1.getCuotasDeSolicitud(s2));
+        //System.out.println(sc1.getCuotasDeSolicitud(s2));
         sc1.guardarSolicitud(u2, s3);
-        System.out.println(sc1.getCuotasDeSolicitud(s3));
+        //System.out.println(sc1.getCuotasDeSolicitud(s3));
         System.out.println("-------------------------");
         System.out.println(u1.getNombre()+" : " + sc1.getSolicitudesAsociadasUsuario(u1));
         System.out.println("ESTADO SOLICITUDES");
-        System.out.println(s1.getEstado());
+        System.out.println(s1.getEstado());*/
 
+        System.out.println("--------------GUARDAR SOLICITUD------");
+        sc1.guardarSolicitud(u1, s1);
+        System.out.println("-------OBTENER CUOTAS DE SOLICITUD-----");
+        System.out.println(sc1.getCuotasDeSolicitud(s1));
+        System.out.println("---------CUOTAS VENCIDAS---------");
+        System.out.println(sc1.getCuotasVencidasSolicitud(s1));
 
     }
 }
