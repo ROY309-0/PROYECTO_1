@@ -7,7 +7,7 @@ public class SunsetBoulevard {
     public static void main(String[] args) {
         System.out.println("----- USUARIO -----");
         Usuario u1 = new Usuario("Juan", "Perez", "juan@gmail.com", "123456", "Calle 1");
-        //Usuario u2 = new Usuario("Kallax", "Calling", "kallax123@gmail.com", "7123-2884", "Col, Las Nieves");
+        Usuario u2 = new Usuario("Kallax", "Calling", "kallax123@gmail.com", "7123-2884", "Col, Las Nieves");
         System.out.println(u1.toString());
 
         BigDecimal prestamo = new BigDecimal("1000");
@@ -56,6 +56,17 @@ public class SunsetBoulevard {
         System.out.println(sc1.getCuotasDeSolicitud(s1));
         System.out.println("---------CUOTAS VENCIDAS---------");
         System.out.println(sc1.getCuotasVencidasSolicitud(s1));
+        System.out.println("-----CUOTAS PENDIENTES-----");
+        System.out.println(sc1.getCuotasPendientesSolicitud(s1));
+
+
+
+        SimuladorCredito sc2 = new SimuladorCredito();
+        sc2.getSolicitudesAsociadasUsuario(u2);
+        System.out.println(u2.getId());
+        sc1.pagarCuota(s1, 11);
+        System.out.println("------se pago?----");
+        System.out.println(sc1.getCuotasDeSolicitud(s1));
 
     }
 }

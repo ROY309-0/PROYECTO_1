@@ -54,6 +54,15 @@ public class Cuota {
         }
     }
 
+    //Pagar la cuota
+    public void Pagar(){
+        this.estado = EstadoCuota.PAGADA;
+    }
+
+    public void vencer(){
+        this.estado = EstadoCuota.VENCIDA;
+    }
+
     private void validarCampo(LocalDate campo){
         if(campo == null){
             throw new IllegalArgumentException("La fecha no puede estar vacia");

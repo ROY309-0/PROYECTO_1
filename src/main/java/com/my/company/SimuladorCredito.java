@@ -72,7 +72,7 @@ public class SimuladorCredito {
     public List<Cuota> getCuotasVencidasSolicitud(SolicitudCredito s){
         validarCampoSolicitud(s);
         //Establecemos la fecha
-        LocalDate hoy = LocalDate.of(2025, 1, 1);
+        LocalDate hoy = LocalDate.of(2024, 6, 1);
 
         //Creamos una lista para obtener las cuotas de la lista por medio de la key de la solicitud
         List<Cuota> cuotas = listaCuotas.get(s.getId());
@@ -90,11 +90,30 @@ public class SimuladorCredito {
         return cuotasVencidas;
     }
 
+    public void pagarCuota(SolicitudCredito s, int id){
+        //Valido la entrada del campo solicitud
+        validarCampoSolicitud(s);
+        validarId(id);
+        List<Cuota> cuotasList = listaCuotas.get(s.getId());
+        boolean idEncontrado = false;
+        for (Cuota c : cuotasList){
+            if (c.getId() == id){
+                verificarEstadoDeCuota(c);
+                c.Pagar();
+                idEncontrado = true;
+            }
+        }
+
+        if (!idEncontrado){
+            throw new IllegalArgumentException("La cuota no fue encontrada. Por favor verificar la entrada");
+        }
+    }
+
     public List<Cuota> getCuotasPendientesSolicitud(SolicitudCredito s){
         validarCampoSolicitud(s);
 
         //Establecemos la fecha actual
-        LocalDate fecha = LocalDate.of(2025, 1, 1);
+        LocalDate fecha = LocalDate.of(2024, 6, 1);
 
         //Creamos una lista para obtener las cuotas por medio del key id de solicitud
         List<Cuota> cuotasLista = listaCuotas.get(s.getId());
@@ -103,7 +122,7 @@ public class SimuladorCredito {
         //Recorremos con un foreach la lista que contiene las cuotas
         for (Cuota r: cuotasLista){
             //Si la fecha de vencimiento de la cuota es despues a la fecha actual esta pendiente
-            if (r.getFechaVencimiento().isAfter(fecha)){
+            if (r.getFechaVencimiento().isAfter(fecha) || r.getFechaVencimiento().isEqual(fecha)){
                 cuotasPendientes.add(r);
             }
         }
@@ -112,16 +131,17 @@ public class SimuladorCredito {
         return cuotasPendientes;
     }
 
+    //Devolver las solicitudes asociadas al usuario
+    public List<SolicitudCredito> getSolicitudesAsociadasUsuario(Usuario usuario){
+        return listaSolicitudes.get(usuario.getId());
+    }
+
     //Calculamos el monto de las cuota para no hacerlo manual cada vez
     private BigDecimal calcularMontoCuotas(BigDecimal monto, int cuota){
         //Me ayuda a dividir entre bigdecimal para que no hayan infinitos (en ocaciones) y redondear a dos
         return monto.divide(BigDecimal.valueOf(cuota), 2 , RoundingMode.HALF_UP);
     }
 
-    //Devolver las solicitudes asociadas al usuario
-    public List<SolicitudCredito> getSolicitudesAsociadasUsuario(Usuario usuario){
-        return listaSolicitudes.get(usuario.getId());
-    }
 
     private void validarCampoSolicitud(SolicitudCredito s){
         if (s == null){
@@ -132,6 +152,32 @@ public class SimuladorCredito {
     private void validarCampoUsuario(Usuario usuario){
         if (usuario == null){
             throw new IllegalArgumentException("El campo usuario no puede estar vacio");
+        }
+    }
+
+    private void validarCampoCuota(Cuota cuota){
+        if (cuota == null){
+            throw new IllegalArgumentException("El campo cuota no puede estar vacio");
+        }
+    }
+
+    private void verificarEstadoDeCuota(Cuota c){
+        if (c.getEstado() == EstadoCuota.PAGADA){
+            throw new IllegalStateException("La cuota ya esta pagada");
+        }
+
+        if (c.getEstado() == EstadoCuota.VENCIDA){
+            throw new IllegalStateException("La cuota ya esta vencida");
+        }
+    }
+
+    private void validarId(int id){
+        if (id == 0){
+            throw new IllegalArgumentException("La cuota ingresada no puede ser cero");
+        }
+
+        if (id < 0){
+            throw new IllegalArgumentException("La cuota no puede ser negativa");
         }
     }
 }
