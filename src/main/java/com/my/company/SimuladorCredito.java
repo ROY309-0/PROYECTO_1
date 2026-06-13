@@ -72,7 +72,7 @@ public class SimuladorCredito {
     public List<Cuota> getCuotasVencidasSolicitud(SolicitudCredito s){
         validarCampoSolicitud(s);
         //Establecemos la fecha
-        LocalDate hoy = LocalDate.of(2024, 6, 1);
+        LocalDate hoy = LocalDate.of(2025, 12, 1);
 
         //Creamos una lista para obtener las cuotas de la lista por medio de la key de la solicitud
         List<Cuota> cuotas = listaCuotas.get(s.getId());
