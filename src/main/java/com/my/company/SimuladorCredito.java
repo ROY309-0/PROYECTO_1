@@ -35,8 +35,9 @@ public class SimuladorCredito {
             solicitudes.add(s);
             listaSolicitudes.put(u.getId(), solicitudes);
         }
+        //Inicialmente la logica decia que convenia dejarlo aca, pero la responsabilidad no es de la solicitud
         //Llamamos al metodo para generar cuotas y luego las consultamos
-        generarCuotasASolicitud(s);
+        //generarCuotasASolicitud(s);
     }
 
     //Consultamos las cuotass de la solicitud por medio de la key
@@ -90,10 +91,13 @@ public class SimuladorCredito {
         return cuotasVencidas;
     }
 
+    //Con este metodo se paga la cuota y cambia su estado
     public void pagarCuota(SolicitudCredito s, int id){
         //Valido la entrada del campo solicitud
         validarCampoSolicitud(s);
+        //Valido el id de la solicitud
         validarId(id);
+
         List<Cuota> cuotasList = listaCuotas.get(s.getId());
         boolean idEncontrado = false;
         for (Cuota c : cuotasList){
