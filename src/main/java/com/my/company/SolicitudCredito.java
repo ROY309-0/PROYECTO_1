@@ -6,7 +6,7 @@ public class SolicitudCredito {
     private int id;
     private static int contador = 0;
     private BigDecimal cantidadPrestada;
-    private EstadoSolicitud estado; //Trabajare con : PENDIENTE, ACTIVA, PAGADA, RECHAZADA
+    private EstadoSolicitud estado;
     private LocalDate fechaInicio;
     private LocalDate fechaFin;
     private BigDecimal interes;

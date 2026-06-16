@@ -34,6 +34,11 @@ public class GestorSolicitudes {
         //generarCuotasASolicitud(s);
     }
 
+
+    public List<SolicitudCredito> getSolicitudesAsociadasUsuario(Usuario u){
+        return listaSolicitudes.get(u.getId());
+    }
+
     /*Metodos privados*/
     private void validarCampoSolicitud(SolicitudCredito s){
         if (s == null){
@@ -42,7 +47,9 @@ public class GestorSolicitudes {
     }
 
     private void validarCampoUsuario(Usuario u){
-
+        if (u == null){
+            throw new IllegalArgumentException("El campo usuario no puede estar vacio");
+        }
     }
 
 
