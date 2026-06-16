@@ -1,6 +1,6 @@
-//System.out.println("----- SOLICITUD -----");
-//System.out.println(s1.toString());
-//SimuladorCredito sc1 = new SimuladorCredito();
+/*System.out.println("----- SOLICITUD -----");
+System.out.println(s1.toString());
+SimuladorCredito sc1 = new SimuladorCredito();*/
 
 
         /*BigDecimal prestamo2 = new BigDecimal("1200.00");
