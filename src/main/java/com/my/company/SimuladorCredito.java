@@ -175,6 +175,7 @@ public class SimuladorCredito {
         }
     }
 
+    //Este metodo puede simplificarse aun más usando una sola condición
     private void validarId(int id){
         if (id == 0){
             throw new IllegalArgumentException("La cuota ingresada no puede ser cero");

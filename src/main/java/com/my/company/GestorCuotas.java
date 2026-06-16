@@ -136,12 +136,8 @@ public class GestorCuotas {
 
     //Solo para validar el Id
     private void validarId(int id){
-        if (id == 0){
-            throw new IllegalArgumentException("La cuota ingresada no puede ser cero");
-        }
-
-        if (id < 0){
-            throw new IllegalArgumentException("La cuota no puede ser negativa");
+        if (id <= 0){
+            throw new IllegalArgumentException("La cuota ingresada no puede ser cero o vacia");
         }
     }
 
