@@ -4,9 +4,10 @@ import java.util.List;
 
 public class SimuladorCredito {
     //Creamos dos objetos del tipo de las dos clases que usamos para poder acceder a los metodos
-    GestorSolicitudes gestorSolicitudes;
-    GestorCuotas gestorCuotas;
+    private GestorSolicitudes gestorSolicitudes;
+    private GestorCuotas gestorCuotas;
 
+    //El constructor básicamente ya crea estas variables, no es necesario instanciarlas desde main
     public SimuladorCredito(){
         this.gestorSolicitudes = new GestorSolicitudes();
         this.gestorCuotas = new GestorCuotas();
@@ -39,10 +40,12 @@ public class SimuladorCredito {
         gestorCuotas.pagarCuota(s, id);
     }
 
+    public void aprobarSolicitud(SolicitudCredito s){
+        gestorSolicitudes.aprobarSolicitud(s);
+        gestorCuotas.generarCuotasASolicitud(s);
+    }
 
-
-
-
-
-
+    public EstadoSolicitud estadoSolicitud(SolicitudCredito s){
+        return gestorSolicitudes.estadoSolicitud(s);
+    }
 }

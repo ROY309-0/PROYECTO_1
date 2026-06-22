@@ -4,7 +4,8 @@ import java.time.LocalDate;
 
 public class Cuota {
     private int id;
-    private static int contador = 0;
+    //Cuando se crea arranca con el Id en el cual se quedó, no se reinicia y eso es un problema.
+    private static int contador = 0;//Cuando se vea las bases de datos vamos a corregirlos
     private BigDecimal montoCuota;
     private LocalDate fechaVencimiento;
     private EstadoCuota estado;
@@ -55,12 +56,8 @@ public class Cuota {
     }
 
     //Pagar la cuota
-    public void Pagar(){
+    public void pagar(){
         this.estado = EstadoCuota.PAGADA;
-    }
-
-    public void vencer(){
-        this.estado = EstadoCuota.VENCIDA;
     }
 
     private void validarCampo(LocalDate campo){
@@ -83,11 +80,6 @@ public class Cuota {
         }
     }
 
-    private void validarCampo(String campo){
-        if (campo == null || campo.isBlank()){
-            throw new IllegalArgumentException("El estado no puede estar vacio");
-        }
-    }
 
     private void validarCampo(SolicitudCredito s){
         if (s == null){

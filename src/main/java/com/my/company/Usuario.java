@@ -12,10 +12,14 @@ public class Usuario {
 
     public Usuario(String nombreP, String apellidoP, String correoP, String celularP, String direccionP){
         validarCampo(nombreP, "El campo nombre no puede estar vacio");
+        //Longitud de cadena
+        validarLongitudCadena(nombreP, 30, 2, "Nombre");
         validarCampo(apellidoP, "El campo apellido no puede estar vacio");
+        validarLongitudCadena(apellidoP, 50, 5, "Apellido");
         validarCampo(correoP, "El campo correo no puede estar vacio");
         validarCampo(celularP, "El campo celular no puede estar vacio");
         validarCampo(direccionP, "La direcccion no puede estar vacia");
+        validarLongitudCadena(direccionP, 100, 10, "Direccion");
         this.id = generarId();
         this.nombre = nombreP.trim();
         this.apellido = apellidoP.trim();
@@ -60,9 +64,30 @@ public class Usuario {
         }
     }
 
+    //Para poder asegurar sin tener que repetir el mismo codigo se puede establecer un minimo y un maximo para evitar problemas
+    //Necesito un campo donde almacenar el valor real, un limite de caracteres maximo, un minimo permitido, y un campo que me devuelva que tipo es
+    private void validarLongitudCadena(String campo, int limiteMax, int limiteMin, String campoU){
+        validarlimites(limiteMax);
+        validarlimites(limiteMin);
+
+        if (campo.length() > limiteMax){
+            throw new IllegalArgumentException("El campo "+ campoU +" supera la cantidad de carateres permitidos");
+        }
+
+        if (campo.length() < limiteMin){
+            throw new IllegalArgumentException("El campo " + campoU + " no puede tener pocos caracteres");
+        }
+    }
+
     //Generar Id
     private static int generarId(){
         return ++contador;
+    }
+
+    private void validarlimites(int n){
+        if (n <=0){
+            throw new IllegalArgumentException("El limite no puede ser cero o negativo");
+        }
     }
 
     @Override

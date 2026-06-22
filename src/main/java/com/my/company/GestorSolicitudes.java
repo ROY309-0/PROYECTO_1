@@ -5,12 +5,28 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+//Los gestores la orquestan, su trabajo es solo coordinar el flujo
 public class GestorSolicitudes {
     //Para este tipo de situaciones lo mas aplicativo es solicitrar por ID, no por usuario, por Solicitud
     private Map<Integer, List<SolicitudCredito>> listaSolicitudes;
 
     public GestorSolicitudes(){
         this.listaSolicitudes = new HashMap<>();
+    }
+
+    public void aprobarSolicitud(SolicitudCredito s){
+        validarCampoSolicitud(s);
+        s.activarSolicitud();
+    }
+
+    public void cancelarSolicitud(SolicitudCredito s){
+        validarCampoSolicitud(s);
+        s.cancelarSolicitud();
+    }
+
+    public void rechazarSolicitud(SolicitudCredito s){
+        validarCampoSolicitud(s);
+        s.rechazarSolicitud();
     }
 
     /*Metodos que hacen algo*/
@@ -39,6 +55,10 @@ public class GestorSolicitudes {
         return listaSolicitudes.get(u.getId());
     }
 
+    public EstadoSolicitud estadoSolicitud(SolicitudCredito s){
+        return s.getEstado();
+    }
+
     /*Metodos privados*/
     private void validarCampoSolicitud(SolicitudCredito s){
         if (s == null){
@@ -51,9 +71,4 @@ public class GestorSolicitudes {
             throw new IllegalArgumentException("El campo usuario no puede estar vacio");
         }
     }
-
-
-
-
-
 }

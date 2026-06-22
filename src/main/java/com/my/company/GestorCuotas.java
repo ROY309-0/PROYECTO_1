@@ -26,7 +26,8 @@ public class GestorCuotas {
     }
 
     //Este metodo privado me genera las cuotas, recibiendo una SolicitudCredito
-    private void generarCuotasASolicitud(SolicitudCredito s){
+    //Ahora se convierte en publico para que pueda generar cuotas
+    public void generarCuotasASolicitud(SolicitudCredito s){
         validarCampoSolicitud(s);
         //Obtenemos la fecha de inicio de la solicitud para sumar los meses y obtenemo las cantidades de cuotas
         LocalDate inicio = s.getFechaInicio();
@@ -115,7 +116,7 @@ public class GestorCuotas {
             //Si encuento el id verifico el estado de la cuota y luego lo pago y lo marco encontrado
             if (c.getId() == id){
                 verificarEstadoDeCuota(c);
-                c.Pagar();
+                c.pagar();
                 idEncontrado = true;
             }
         }

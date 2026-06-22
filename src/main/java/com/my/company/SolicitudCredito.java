@@ -2,6 +2,7 @@ package com.my.company;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+//La validación vive en la entidad
 public class SolicitudCredito {
     private int id;
     private static int contador = 0;
@@ -63,6 +64,28 @@ public class SolicitudCredito {
 
     public Usuario getUsuarioAsociado(){
         return usuarioAsociado;
+    }
+
+    //Lo mejor es siempre verificar el estado en la clase inicial para evitar redundancia de codigo en las siguientes clases.
+    public void activarSolicitud(){
+        if (this.estado != EstadoSolicitud.REVISION){
+            throw new IllegalStateException("No se puede cambiar el estado");
+        }
+        this.estado = EstadoSolicitud.ACTIVA;
+    }
+
+    public void cancelarSolicitud(){
+        if (this.estado != EstadoSolicitud.REVISION){
+            throw new IllegalStateException("No se puede cambiar el estado");
+        }
+        this.estado = EstadoSolicitud.CANCELADA;
+    }
+
+    public void rechazarSolicitud(){
+        if (this.estado != EstadoSolicitud.REVISION){
+            throw new IllegalStateException("No se puede cambiar el estado");
+        }
+        this.estado = EstadoSolicitud.RECHAZADA;
     }
 
     private static int generarId(){
