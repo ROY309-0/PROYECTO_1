@@ -1,9 +1,0 @@
-{
-    "id": 1,
-    "nombre": "Carlos",
-    "apellido": "Ramirez",
-    "correo": "carlos.ramirez@test.com",
-    "celular": "7234-6789",
-    "direccion": "Avenida Los Pinos #45,Santa Ana",
-    "active": true
-}

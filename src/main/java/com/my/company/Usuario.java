@@ -1,6 +1,7 @@
 package com.my.company;
 
 public class Usuario {
+    //Esta clase tiene los atributos privados pero a JackSON se le complicaria reconstruir el objeto desde JSON
     private int id;
     private static int contador = 0;
     private String nombre;
