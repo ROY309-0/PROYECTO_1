@@ -19,5 +19,6 @@ public class SunsetBoulevard {
         simulador1.aprobarSolicitud(s1);
         System.out.println(simulador1.estadoSolicitud(s1));
         System.out.println(simulador1.getCuotasDeSolicitud(s1));
+
     }
 }
