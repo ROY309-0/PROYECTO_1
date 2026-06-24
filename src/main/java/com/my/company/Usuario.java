@@ -11,6 +11,11 @@ public class Usuario {
     private String direccion;
     private boolean isActive;//is false
 
+    //Constructor vacio
+    public Usuario(){
+
+    }
+
     public Usuario(String nombreP, String apellidoP, String correoP, String celularP, String direccionP){
         validarCampo(nombreP, "El campo nombre no puede estar vacio");
         //Longitud de cadena
