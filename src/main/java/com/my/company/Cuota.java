@@ -17,7 +17,6 @@ public class Cuota {
         validarCampo(solicitudCreditoAsociadaP);
         validarFecha(fechaVencimientoP, solicitudCreditoAsociadaP);
 
-
         this.id = generarId();
         this.montoCuota = montoCuotaP;
         this.fechaVencimiento = fechaVencimientoP;

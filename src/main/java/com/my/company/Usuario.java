@@ -11,7 +11,6 @@ public class Usuario {
     private String direccion;
     private boolean isActive;//is false
 
-    //Constructor vacio
     public Usuario(){
 
     }
@@ -21,7 +20,7 @@ public class Usuario {
         //Longitud de cadena
         validarLongitudCadena(nombreP, 30, 2, "Nombre");
         validarCampo(apellidoP, "El campo apellido no puede estar vacio");
-        validarLongitudCadena(apellidoP, 50, 5, "Apellido");
+        validarLongitudCadena(apellidoP, 50, 2, "Apellido");
         validarCampo(correoP, "El campo correo no puede estar vacio");
         validarCampo(celularP, "El campo celular no puede estar vacio");
         validarCampo(direccionP, "La direcccion no puede estar vacia");
@@ -95,6 +94,37 @@ public class Usuario {
             throw new IllegalArgumentException("El limite no puede ser cero o negativo");
         }
     }
+
+    //Setters (Temporales) - Vulneraran un poco el sistema pero es necesario para poder aprender momentaneamente
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setNombre(String nombre){
+        this.nombre = nombre;
+    }
+
+    public void setApellido(String apellido){
+        this.apellido = apellido;
+    }
+
+    public void setCorreo(String correo){
+        this.correo = correo;
+    }
+
+    public void setCelular(String celular){
+        this.celular = celular;
+    }
+
+    public void setDireccion(String direccion){
+        this.direccion = direccion;
+    }
+
+    public void setActive(boolean isActive){
+        this.isActive = isActive;
+    }
+
+
 
     @Override
     public String toString() {

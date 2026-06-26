@@ -7,7 +7,6 @@ public class SunsetBoulevard {
     public static void main(String[] args) {
         /*System.out.println("----- USUARIO -----");*/
         Usuario u1 = new Usuario("Carlos", "Ramirez", "carlos.ramirez@test.com", "7234-6789", "Avenida Los Pinos #45,Santa Ana");
-        Usuario u2 = new Usuario();
 
         BigDecimal prestamo = new BigDecimal("1000");
         BigDecimal interesPrestamo = new BigDecimal("0.05");
