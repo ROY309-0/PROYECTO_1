@@ -22,7 +22,17 @@
             <version>2.22.0</version>
             <scope>compile</scope>
         </dependency>
+
+        <!-- Para evitar problemas con algunos datos -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.22.0</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
+
+
 
     <!--Para evitar que el compilador tenga fallas mejor lo especifico-->
     <build>

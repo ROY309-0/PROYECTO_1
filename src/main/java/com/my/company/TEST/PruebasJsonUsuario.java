@@ -10,7 +10,7 @@ import java.io.IOException;
 public class PruebasJsonUsuario {
     public static void main(String[] args) {
         //Creacion del objeto que permitira convertir el archivo Java a JSON
-        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectMapper objectMapperU = new ObjectMapper();
 
         //Creacion de Usuario
         Usuario user1 = new Usuario("Daniela", "Cruz", "danielacruz@test.com", "7890-1234", "Colonia El Carmen, Chalatenango");
@@ -28,8 +28,9 @@ public class PruebasJsonUsuario {
             //Aca es donde se crea el JSON
             //Toma el objeto, lo convierte en JSON y escribe ese resultado en la ruta especificada
 
-            objectMapper.writeValue(new File("data/json/usuario.json"), user1);
+            objectMapperU.writeValue(new File("data/json/usuario.json"), user1);
             System.out.println("JSON creado correctamente");
+            System.out.println(user1.toString());
         } catch (IOException e){
             e.printStackTrace();
         }
@@ -37,8 +38,9 @@ public class PruebasJsonUsuario {
         System.out.println("LEER JSON Y CONVERTIR A OBJETO");
         /*LEER EL JSON Y VOLVERLO OBJETO DE NUEVO*/
         try{
-            Usuario user1J = objectMapper.readValue(new File("data/json/usuario.json"), Usuario.class);
+            Usuario user1J = objectMapperU.readValue(new File("data/json/usuario.json"), Usuario.class);
             System.out.println("JSON leido y Usuario convertido en objeto");
+            System.out.println(user1J.toString());
         }catch (IOException e){
             e.printStackTrace();
         }

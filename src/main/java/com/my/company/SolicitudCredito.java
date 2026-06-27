@@ -1,4 +1,6 @@
 package com.my.company;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -62,10 +64,16 @@ public class SolicitudCredito {
         return cantidadCuotas;
     }
 
+    //No incluyas este getter al momento de crear el JSON
+    @JsonIgnore
     public Usuario getUsuarioAsociado(){
         return usuarioAsociado;
     }
 
+    //Este metodo es el que JackSON va a usar para regresarme solo el id del usuario asociado en vez de toda la informacion
+    public int getIdUsuarioAsociado(){
+        return  usuarioAsociado.getId();
+    }
     //Lo mejor es siempre verificar el estado en la clase inicial para evitar redundancia de codigo en las siguientes clases.
     public void activarSolicitud(){
         if (this.estado != EstadoSolicitud.REVISION){
