@@ -22,7 +22,7 @@ public class PruebasJsonUsuario {
             //Antes de to do primero debemos asegurarnos de crear un entorno donde guardarlo
             File carpeta = new File("data/json"); //No se crea, solo representa la ruta
             if (!carpeta.exists()){
-                carpeta.mkdirs(); //intenta crear la ruta necesaria de caep
+                carpeta.mkdirs(); //intenta crear la ruta necesaria de la carpeta
             }
 
             //Aca es donde se crea el JSON

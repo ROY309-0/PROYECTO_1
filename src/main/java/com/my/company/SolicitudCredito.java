@@ -1,9 +1,11 @@
 package com.my.company;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@JsonIgnoreProperties(ignoreUnknown = true) //si JackSON encuenta un campo que no conoce solo lo ignora, no lanza error
 //La validación vive en la entidad
 public class SolicitudCredito {
     private int id;
@@ -15,6 +17,10 @@ public class SolicitudCredito {
     private BigDecimal interes;
     private int cantidadCuotas;
     private Usuario usuarioAsociado;
+
+    public SolicitudCredito(){
+
+    }
 
     public SolicitudCredito(BigDecimal cantidadPrestadaP, LocalDate fechaInicioP, LocalDate fechaFinP, BigDecimal interesP, int cantidadCuotasP, Usuario usuarioP){
         validarCampo(cantidadPrestadaP);
@@ -139,6 +145,40 @@ public class SolicitudCredito {
         if (u == null){
             throw new IllegalArgumentException(mensaje);
         }
+    }
+
+    //Setters temporales para poder construir el JSON y leerlo
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setCantidadPrestada(BigDecimal cantidadPrestada){
+        this.cantidadPrestada = cantidadPrestada;
+    }
+
+    public void setEstado(EstadoSolicitud estado){
+        this.estado = estado;
+    }
+
+    public void setFechaInicio(LocalDate fechaInicio){
+        this.fechaInicio = fechaInicio;
+    }
+
+    public void setFechaFin(LocalDate fechaFin){
+        this.fechaFin = fechaFin;
+    }
+
+    public void setInteres(BigDecimal interes){
+        this.interes = interes;
+    }
+
+    public void setCantidadCuotas(int cantidadCuotas){
+        this.cantidadCuotas = cantidadCuotas;
+    }
+
+    @JsonIgnore
+    public void setUsuarioAsociado(Usuario usuarioAsociado){
+        this.usuarioAsociado = usuarioAsociado;
     }
 
     @Override

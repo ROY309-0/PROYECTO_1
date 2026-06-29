@@ -2,13 +2,13 @@
     "id": 1,
     "cantidadPrestada": 1200.00,
     "estado": "REVISION",
-     "_comment": "JackSON toma las fechas establecidas como si fueran Array",
+
     "fechaInicio": [
         2024,
         12,
         21
     ],
-     "_comment": "JackSON toma las fechas establecidas como si fueran Array",
+
     "fechaFin": [
         2025,
         12,

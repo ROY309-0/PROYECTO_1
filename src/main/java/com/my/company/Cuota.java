@@ -1,7 +1,12 @@
 package com.my.company;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.swing.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+@JsonIgnoreProperties(ignoreUnknown = true) //si JackSON encuenta un campo que no conoce solo lo ignora, no lanza error
 public class Cuota {
     private int id;
     //Cuando se crea arranca con el Id en el cual se quedó, no se reinicia y eso es un problema.
@@ -10,6 +15,9 @@ public class Cuota {
     private LocalDate fechaVencimiento;
     private EstadoCuota estado;
     private SolicitudCredito solicitudCreditoAsociada;
+
+    public Cuota(){
+    }
 
     public Cuota(BigDecimal montoCuotaP, LocalDate fechaVencimientoP, SolicitudCredito solicitudCreditoAsociadaP){
         validarCampo(montoCuotaP);
@@ -40,8 +48,15 @@ public class Cuota {
         return estado;
     }
 
+
+    @JsonIgnore//para que no lo incluya en el JSON
     public SolicitudCredito getSolicitudCreditoAsociada() {
         return solicitudCreditoAsociada;
+    }
+
+    //Con el que JackSON trabajara
+    public int getIdSolicitudAsociada(){
+        return solicitudCreditoAsociada.getId();
     }
 
     private void validarCampo(BigDecimal campo){
@@ -84,6 +99,26 @@ public class Cuota {
         if (s == null){
             throw new IllegalArgumentException("La solicitud asociada no puede estar vacia");
         }
+    }
+
+    public void setId(int id){
+        this.id = id;
+    }
+
+    public void setMontoCuota(BigDecimal montoCuota){
+        this.montoCuota = montoCuota;
+    }
+
+    public void setFechaVencimiento(LocalDate fechaVencimiento){
+        this.fechaVencimiento = fechaVencimiento;
+    }
+
+    public void setEstado(EstadoCuota estado){
+        this.estado = estado;
+    }
+
+    public void setSolicitudCreditoAsociada(SolicitudCredito solicitudCreditoAsociada){
+        this.solicitudCreditoAsociada = solicitudCreditoAsociada;
     }
 
     private static int generarId(){
