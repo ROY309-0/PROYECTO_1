@@ -45,6 +45,8 @@ public class GestorSolicitudes {
             solicitudes.add(s);
             listaSolicitudes.put(u.getId(), solicitudes);
         }
+
+
         //Inicialmente la logica decia que convenia dejarlo aca, pero la responsabilidad no es de la solicitud
         //Llamamos al metodo para generar cuotas y luego las consultamos
         //generarCuotasASolicitud(s);
