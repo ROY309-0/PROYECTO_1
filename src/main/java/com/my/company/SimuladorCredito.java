@@ -1,16 +1,19 @@
 package com.my.company;
 
 import java.util.List;
+import java.util.Map;
 
 public class SimuladorCredito {
     //Creamos dos objetos del tipo de las dos clases que usamos para poder acceder a los metodos
     private GestorSolicitudes gestorSolicitudes;
     private GestorCuotas gestorCuotas;
+    private GestorJson gestorJson;
 
     //El constructor básicamente ya crea estas variables, no es necesario instanciarlas desde main
     public SimuladorCredito(){
         this.gestorSolicitudes = new GestorSolicitudes();
         this.gestorCuotas = new GestorCuotas();
+        this.gestorJson = new GestorJson();
     }
 
     //Ahora creamos los metodos que necesita simulador credito para simularlos
@@ -21,6 +24,11 @@ public class SimuladorCredito {
 
     public List<SolicitudCredito> getSolicitudesAsociadasUsuario(Usuario u){
         return gestorSolicitudes.getSolicitudesAsociadasUsuario(u);
+    }
+
+    //Guardar la informacion en el Json
+    public void guardarSolicitudJss(){
+        gestorJson.guardarSolicitudJs(gestorSolicitudes.obtenerMapaSolicitudes());
     }
 
     /*CUOTAS*/

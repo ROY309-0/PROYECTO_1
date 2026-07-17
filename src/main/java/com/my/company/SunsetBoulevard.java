@@ -17,8 +17,13 @@ public class SunsetBoulevard {
         SimuladorCredito simulador1 = new SimuladorCredito();
         simulador1.guardarSolicitud(u1, s1);
         simulador1.aprobarSolicitud(s1);
+        System.out.println("------------------------------------------------------------------");
+        simulador1.guardarSolicitudJss();
+        System.out.println("------------------------------------------------------------------");
         System.out.println(simulador1.estadoSolicitud(s1));
         System.out.println(simulador1.getCuotasDeSolicitud(s1));
+
+
 
     }
 }

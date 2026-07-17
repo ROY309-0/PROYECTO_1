@@ -52,10 +52,17 @@ public class GestorSolicitudes {
         //generarCuotasASolicitud(s);
     }
 
+    //Para poder acceder al mapa de las solicitudes y guardarlas
+    public Map<Integer, List<SolicitudCredito>> obtenerMapaSolicitudes(){
+        return listaSolicitudes;
+    }
+
 
     public List<SolicitudCredito> getSolicitudesAsociadasUsuario(Usuario u){
         return listaSolicitudes.get(u.getId());
     }
+
+
 
     public EstadoSolicitud estadoSolicitud(SolicitudCredito s){
         return s.getEstado();
