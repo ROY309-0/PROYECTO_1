@@ -54,7 +54,7 @@ public class GestorSolicitudes {
 
     //Para poder acceder al mapa de las solicitudes y guardarlas
     public Map<Integer, List<SolicitudCredito>> obtenerMapaSolicitudes(){
-        return listaSolicitudes;
+        return new HashMap<>(listaSolicitudes);
     }
 
 

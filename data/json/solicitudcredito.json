@@ -1,1 +1,1 @@
-{"1":[{"id":1,"cantidadPrestada":1000,"estado":"ACTIVA","fechaInicio":[2026,6,16],"fechaFin":[2027,6,15],"interes":0.05,"cantidadCuotas":11,"idUsuarioAsociado":1}]}
+{"1":[{"id":1,"cantidadPrestada":1000,"estado":"ACTIVA","fechaInicio":[2026,6,16],"fechaFin":[2027,6,15],"interes":0.05,"cantidadCuotas":11,"idUsuarioAsociado":1},{"id":2,"cantidadPrestada":10000,"estado":"ACTIVA","fechaInicio":[2026,7,21],"fechaFin":[2030,7,21],"interes":0.10,"cantidadCuotas":48,"idUsuarioAsociado":1}]}

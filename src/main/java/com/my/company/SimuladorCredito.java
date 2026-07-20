@@ -31,6 +31,23 @@ public class SimuladorCredito {
         gestorJson.guardarSolicitudJs(gestorSolicitudes.obtenerMapaSolicitudes());
     }
 
+    public void guardarCuotasJss(){
+        gestorJson.guardarCuotas(gestorCuotas.obtenerMapaCuotas());
+    }
+
+    public void aprobarSolicitud(SolicitudCredito s){
+        gestorSolicitudes.aprobarSolicitud(s);
+        gestorCuotas.generarCuotasASolicitud(s);
+    }
+
+    public void cancelarSolicitud(SolicitudCredito s){
+        gestorSolicitudes.cancelarSolicitud(s);
+    }
+
+    public EstadoSolicitud estadoSolicitud(SolicitudCredito s){
+        return gestorSolicitudes.estadoSolicitud(s);
+    }
+
     /*CUOTAS*/
     public List<Cuota> getCuotasDeSolicitud(SolicitudCredito s){
         return gestorCuotas.getCuotasDeSolicitud(s);
@@ -46,14 +63,5 @@ public class SimuladorCredito {
 
     public void pagarCuota(SolicitudCredito s, int id){
         gestorCuotas.pagarCuota(s, id);
-    }
-
-    public void aprobarSolicitud(SolicitudCredito s){
-        gestorSolicitudes.aprobarSolicitud(s);
-        gestorCuotas.generarCuotasASolicitud(s);
-    }
-
-    public EstadoSolicitud estadoSolicitud(SolicitudCredito s){
-        return gestorSolicitudes.estadoSolicitud(s);
     }
 }

@@ -126,6 +126,11 @@ public class GestorCuotas {
         }
     }
 
+    //Para poder acceder a la lista de cuotas desde gestor cuotas
+    public Map<Integer, List<Cuota>> obtenerMapaCuotas(){
+        return new HashMap<>(listaCuotas);
+    }
+
 
     /*Privados*/
     //Solo para validar objetos de tipo SolicitudCredito
