@@ -5,15 +5,35 @@ import java.util.Map;
 
 public class SimuladorCredito {
     //Creamos dos objetos del tipo de las dos clases que usamos para poder acceder a los metodos
+    private GestorUsuarios gestorUsuarios;
     private GestorSolicitudes gestorSolicitudes;
     private GestorCuotas gestorCuotas;
     private GestorJson gestorJson;
 
     //El constructor básicamente ya crea estas variables, no es necesario instanciarlas desde main
     public SimuladorCredito(){
+        this.gestorUsuarios = new GestorUsuarios();
         this.gestorSolicitudes = new GestorSolicitudes();
         this.gestorCuotas = new GestorCuotas();
         this.gestorJson = new GestorJson();
+    }
+
+    /*USUARIOS*/
+    public void guardarUsuario(Usuario u){
+        gestorUsuarios.guardarUsuario(u);
+    }
+
+    public Usuario buscarUsuario(int id){
+        return gestorUsuarios.buscarUsuario(id);
+    }
+
+    //Json usuarios
+    public void guardarUsuarioJs(){
+        gestorJson.guardarUsuarioJs(gestorUsuarios.obtenerMapaUsuarios());
+    }
+
+    public Map<Integer, Usuario> cargarUsuarios(){
+        return gestorJson.cargarUsuarios();
     }
 
     //Ahora creamos los metodos que necesita simulador credito para simularlos
@@ -38,6 +58,14 @@ public class SimuladorCredito {
     public void aprobarSolicitud(SolicitudCredito s){
         gestorSolicitudes.aprobarSolicitud(s);
         gestorCuotas.generarCuotasASolicitud(s);
+    }
+
+    public Map<Integer, List<SolicitudCredito>> cargarSolicitudes(){
+        return gestorJson.cargarSolicitudes();
+    }
+
+    public Map<Integer, List<Cuota>> cargarCuotas(){
+        return gestorJson.cargarCuotas();
     }
 
     public void cancelarSolicitud(SolicitudCredito s){

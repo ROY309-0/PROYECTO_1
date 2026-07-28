@@ -6,7 +6,13 @@ import java.time.LocalDate;
 public class SunsetBoulevard {
     public static void main(String[] args) {
         /*System.out.println("----- USUARIO -----");*/
+        SimuladorCredito simulador1 = new SimuladorCredito();
         Usuario u1 = new Usuario("Carlos", "Ramirez", "carlos.ramirez@test.com", "7234-6789", "Avenida Los Pinos #45,Santa Ana");
+        System.out.println("GUARDAR USUARIO");
+        simulador1.guardarUsuario(u1);
+        System.out.println("BUSCAR USUARIO");
+        System.out.println(simulador1.buscarUsuario(1));
+        simulador1.guardarUsuarioJs();
 
         System.out.println("SOLICITUD 1");
         BigDecimal prestamo = new BigDecimal("1000");
@@ -15,7 +21,7 @@ public class SunsetBoulevard {
         LocalDate fechaF = LocalDate.of(2027, 6, 15);
         SolicitudCredito s1 = new SolicitudCredito(prestamo, fechaI , fechaF, interesPrestamo, 11, u1);
 
-        SimuladorCredito simulador1 = new SimuladorCredito();
+
         simulador1.guardarSolicitud(u1, s1);
         simulador1.aprobarSolicitud(s1);
         System.out.println(simulador1.estadoSolicitud(s1));
@@ -38,9 +44,16 @@ public class SunsetBoulevard {
         System.out.println("------------------------------------------------------------------");
         simulador1.guardarCuotasJss();
         simulador1.pagarCuota(s1, 1);
-        System.out.println("CUOTA PAGADA");
+        //System.out.println("CUOTA 1 PAGADA");
         simulador1.guardarCuotasJss();
+        //simulador1.pagarCuota(s2, 12);
+        //simulador1.guardarCuotasJss();
+        //System.out.println("CUOTA 12 PAGADA");
 
+        System.out.println("TEST");
+        System.out.println(simulador1.cargarUsuarios());
+        System.out.println(simulador1.cargarSolicitudes());
+        System.out.println(simulador1.cargarCuotas());
 
 
 
