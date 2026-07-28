@@ -51,9 +51,10 @@ public class SunsetBoulevard {
         //System.out.println("CUOTA 12 PAGADA");
 
         System.out.println("TEST");
+        simulador1.reconectarSolicitudes();
         System.out.println(simulador1.cargarUsuarios());
         System.out.println(simulador1.cargarSolicitudes());
-        System.out.println(simulador1.cargarCuotas());
+        //System.out.println(simulador1.cargarCuotas());
 
 
 

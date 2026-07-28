@@ -18,6 +18,21 @@ public class SimuladorCredito {
         this.gestorJson = new GestorJson();
     }
 
+    /*Reconectar solicitudes con usuario*/
+    public void reconectarSolicitudes() {
+        Map<Integer, Usuario> usuariosCargados = gestorJson.cargarUsuarios();
+        Map<Integer, List<SolicitudCredito>> solicitudesCargadas = gestorJson.cargarSolicitudes();
+
+        for (Integer idUsuario: solicitudesCargadas.keySet()){
+            Usuario usuarioE = usuariosCargados.get(idUsuario);
+            List<SolicitudCredito> solicitudesE = solicitudesCargadas.get(idUsuario);
+
+            for (SolicitudCredito s : solicitudesE){
+                s.setUsuarioAsociado(usuarioE);
+            }
+        }
+    }
+
     /*USUARIOS*/
     public void guardarUsuario(Usuario u){
         gestorUsuarios.guardarUsuario(u);
