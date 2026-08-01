@@ -2,6 +2,8 @@ package com.my.company;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
+import java.util.Map;
 
 public class SunsetBoulevard {
     public static void main(String[] args) {
@@ -51,8 +53,10 @@ public class SunsetBoulevard {
         //System.out.println("CUOTA 12 PAGADA");
 
         System.out.println("TEST");
-        simulador1.reconectarSolicitudes();
         System.out.println(simulador1.cargarUsuarios());
+        Map<Integer, List<SolicitudCredito>> solicitudesReconectadas = simulador1.reconectarSolicitudes();
+        System.out.println(solicitudesReconectadas);
+
         System.out.println(simulador1.cargarSolicitudes());
         //System.out.println(simulador1.cargarCuotas());
 

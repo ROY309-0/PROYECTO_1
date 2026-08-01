@@ -19,7 +19,7 @@ public class SimuladorCredito {
     }
 
     /*Reconectar solicitudes con usuario*/
-    public void reconectarSolicitudes() {
+    public Map<Integer, List<SolicitudCredito>> reconectarSolicitudes() {
         Map<Integer, Usuario> usuariosCargados = gestorJson.cargarUsuarios();
         Map<Integer, List<SolicitudCredito>> solicitudesCargadas = gestorJson.cargarSolicitudes();
 
@@ -31,6 +31,8 @@ public class SimuladorCredito {
                 s.setUsuarioAsociado(usuarioE);
             }
         }
+
+        return solicitudesCargadas;
     }
 
     /*USUARIOS*/
