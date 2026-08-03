@@ -98,14 +98,7 @@ public class SimuladorCredito {
         gestorSolicitudes.aprobarSolicitud(s);
         gestorCuotas.generarCuotasASolicitud(s);
     }
-
-    /*public Map<Integer, List<SolicitudCredito>> cargarSolicitudes(){
-        return gestorJson.cargarSolicitudes();
-    }*/
-
-    /*public Map<Integer, List<Cuota>> cargarCuotas(){
-        return gestorJson.cargarCuotas();
-    }*/
+    
 
     public void cancelarSolicitud(SolicitudCredito s){
         gestorSolicitudes.cancelarSolicitud(s);
