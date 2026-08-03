@@ -32,17 +32,17 @@ public class SunsetBoulevard {
         simulador1.guardarSolicitudJss();
         System.out.println("------------------------------------------------------------------");
 
-        System.out.println("SOLICITUD 2");
+        /*System.out.println("SOLICITUD 2");
         BigDecimal prestamo2 = new BigDecimal("10000");
         BigDecimal interesPrestamo2 = new BigDecimal("0.10");
         LocalDate fechaI2 = LocalDate.of(2026, 7, 21);
         LocalDate fechaF2 = LocalDate.of(2030, 7, 21);
-        SolicitudCredito s2 = new SolicitudCredito(prestamo2, fechaI2 , fechaF2, interesPrestamo2, 48, u1);
+        SolicitudCredito s2 = new SolicitudCredito(prestamo2, fechaI2 , fechaF2, interesPrestamo2, 48, u1);*/
 
-        simulador1.guardarSolicitud(u1, s2);
-        simulador1.aprobarSolicitud(s2);
+        //simulador1.guardarSolicitud(u1, s2);
+        //simulador1.aprobarSolicitud(s2);
         System.out.println("------------------------------------------------------------------");
-        simulador1.guardarSolicitudJss();
+        //simulador1.guardarSolicitudJss();
         System.out.println("------------------------------------------------------------------");
         simulador1.guardarCuotasJss();
         simulador1.pagarCuota(s1, 1);
@@ -54,10 +54,11 @@ public class SunsetBoulevard {
 
         System.out.println("TEST");
 
-        Map<Integer, List<SolicitudCredito>> solicitudesReconectadas = simulador1.reconectarSolicitudes();
+        Map<Integer, List<SolicitudCredito>> solicitudesReconectadas = simulador1.cargarSolicitudesJs();
         System.out.println("Solicitudes reconectadas: " + solicitudesReconectadas);
-        System.out.println("Da null usuario asociado: " +simulador1.cargarSolicitudes());
-        //System.out.println(simulador1.cargarCuotas());
+        Map<Integer, List<Cuota>> cuotasReconectadas = simulador1.cargarCuotas();
+        System.out.println("Cuotas Reconectadas: " + cuotasReconectadas);
+
 
 
 

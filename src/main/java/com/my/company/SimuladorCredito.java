@@ -1,5 +1,7 @@
 package com.my.company;
 
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +21,7 @@ public class SimuladorCredito {
     }
 
     /*Reconectar solicitudes con usuario*/
-    public Map<Integer, List<SolicitudCredito>> reconectarSolicitudes() {
+    public Map<Integer, List<SolicitudCredito>> cargarSolicitudesJs() {
         Map<Integer, Usuario> usuariosCargados = gestorJson.cargarUsuarios();
         Map<Integer, List<SolicitudCredito>> solicitudesCargadas = gestorJson.cargarSolicitudes();
 
@@ -33,6 +35,26 @@ public class SimuladorCredito {
         }
 
         return solicitudesCargadas;
+    }
+
+    /*Reconectar cuotas con solicitudes*/
+    public Map<Integer, List<Cuota>> cargarCuotas(){
+        Map<Integer, Usuario> usuariosCargados = gestorJson.cargarUsuarios();
+        Map<Integer, List<SolicitudCredito>> solicitudesCargadas = gestorJson.cargarSolicitudes();
+        Map<Integer, List<Cuota>> cuotasCargadas = gestorJson.cargarCuotas();
+        for (Integer idSolicitud: cuotasCargadas.keySet()){
+            Usuario usuarioE = usuariosCargados.get(idSolicitud);
+            List<SolicitudCredito> solicitudCreditosE = solicitudesCargadas.get(idSolicitud);
+            List<Cuota> cuotasE = cuotasCargadas.get(idSolicitud);
+
+            for (Cuota c : cuotasE){
+                for (SolicitudCredito s : solicitudCreditosE){
+                    c.setSolicitudCreditoAsociada(s);
+                    s.setUsuarioAsociado(usuarioE);
+                }
+            }
+        }
+        return cuotasCargadas;
     }
 
     /*USUARIOS*/
@@ -77,13 +99,13 @@ public class SimuladorCredito {
         gestorCuotas.generarCuotasASolicitud(s);
     }
 
-    public Map<Integer, List<SolicitudCredito>> cargarSolicitudes(){
+    /*public Map<Integer, List<SolicitudCredito>> cargarSolicitudes(){
         return gestorJson.cargarSolicitudes();
-    }
+    }*/
 
-    public Map<Integer, List<Cuota>> cargarCuotas(){
+    /*public Map<Integer, List<Cuota>> cargarCuotas(){
         return gestorJson.cargarCuotas();
-    }
+    }*/
 
     public void cancelarSolicitud(SolicitudCredito s){
         gestorSolicitudes.cancelarSolicitud(s);
