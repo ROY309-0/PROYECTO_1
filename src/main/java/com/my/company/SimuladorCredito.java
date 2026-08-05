@@ -39,18 +39,18 @@ public class SimuladorCredito {
 
     /*Reconectar cuotas con solicitudes*/
     public Map<Integer, List<Cuota>> cargarCuotas(){
-        Map<Integer, Usuario> usuariosCargados = gestorJson.cargarUsuarios();
-        Map<Integer, List<SolicitudCredito>> solicitudesCargadas = gestorJson.cargarSolicitudes();
+        Map<Integer, List<SolicitudCredito>> solicitudesCargadas = cargarSolicitudesJs();
         Map<Integer, List<Cuota>> cuotasCargadas = gestorJson.cargarCuotas();
         for (Integer idSolicitud: cuotasCargadas.keySet()){
-            Usuario usuarioE = usuariosCargados.get(idSolicitud);
-            List<SolicitudCredito> solicitudCreditosE = solicitudesCargadas.get(idSolicitud);
-            List<Cuota> cuotasE = cuotasCargadas.get(idSolicitud);
-
-            for (Cuota c : cuotasE){
-                for (SolicitudCredito s : solicitudCreditosE){
-                    c.setSolicitudCreditoAsociada(s);
-                    s.setUsuarioAsociado(usuarioE);
+            for (Integer idUsuario: solicitudesCargadas.keySet()){
+                List<SolicitudCredito> solicitudCreditosE = solicitudesCargadas.get(idUsuario);
+                List<Cuota> cuotasE = cuotasCargadas.get(idSolicitud);
+                for (Cuota c : cuotasE){
+                    for (SolicitudCredito s : solicitudCreditosE){
+                        if (s.getId() == idSolicitud){
+                            c.setSolicitudCreditoAsociada(s);
+                        }
+                    }
                 }
             }
         }
@@ -98,7 +98,7 @@ public class SimuladorCredito {
         gestorSolicitudes.aprobarSolicitud(s);
         gestorCuotas.generarCuotasASolicitud(s);
     }
-    
+
 
     public void cancelarSolicitud(SolicitudCredito s){
         gestorSolicitudes.cancelarSolicitud(s);
