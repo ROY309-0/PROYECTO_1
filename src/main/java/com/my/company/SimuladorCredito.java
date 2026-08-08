@@ -1,6 +1,5 @@
 package com.my.company;
 
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 
 import java.util.List;
 import java.util.Map;
