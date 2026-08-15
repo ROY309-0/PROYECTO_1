@@ -21,8 +21,8 @@ public class SimuladorCredito {
 
     /*Reconectar solicitudes con usuario*/
     public Map<Integer, List<SolicitudCredito>> cargarSolicitudesJs() {
-        Map<Integer, Usuario> usuariosCargados = gestorJson.cargarUsuarios();
-        Map<Integer, List<SolicitudCredito>> solicitudesCargadas = gestorJson.cargarSolicitudes();
+        Map<Integer, Usuario> usuariosCargados = gestorUsuarios.obtenerMapaUsuarios();
+        Map<Integer, List<SolicitudCredito>> solicitudesCargadas = gestorSolicitudes.obtenerMapaSolicitudes();
 
         for (Integer idUsuario: solicitudesCargadas.keySet()){
             Usuario usuarioE = usuariosCargados.get(idUsuario);
@@ -38,8 +38,8 @@ public class SimuladorCredito {
 
     /*Reconectar cuotas con solicitudes*/
     public Map<Integer, List<Cuota>> cargarCuotas(){
-        Map<Integer, List<SolicitudCredito>> solicitudesCargadas = cargarSolicitudesJs();
-        Map<Integer, List<Cuota>> cuotasCargadas = gestorJson.cargarCuotas();
+        Map<Integer, List<SolicitudCredito>> solicitudesCargadas = gestorSolicitudes.obtenerMapaSolicitudes();
+        Map<Integer, List<Cuota>> cuotasCargadas = gestorCuotas.obtenerMapaCuotas();
         for (Integer idSolicitud: cuotasCargadas.keySet()){
             for (Integer idUsuario: solicitudesCargadas.keySet()){
                 List<SolicitudCredito> solicitudCreditosE = solicitudesCargadas.get(idUsuario);
@@ -74,6 +74,11 @@ public class SimuladorCredito {
         return gestorJson.cargarUsuarios();
     }
 
+    //Me ayuda a cargar y reemplazar
+    public void cargarMapaUsuarios(){
+        gestorUsuarios.cargarMapaUsuarios(gestorJson.cargarUsuarios());
+    }
+
     //Ahora creamos los metodos que necesita simulador credito para simularlos
     /*SOLICITUDES*/
     public void guardarSolicitud(Usuario u, SolicitudCredito s){
@@ -98,13 +103,16 @@ public class SimuladorCredito {
         gestorCuotas.generarCuotasASolicitud(s);
     }
 
-
     public void cancelarSolicitud(SolicitudCredito s){
         gestorSolicitudes.cancelarSolicitud(s);
     }
 
     public EstadoSolicitud estadoSolicitud(SolicitudCredito s){
         return gestorSolicitudes.estadoSolicitud(s);
+    }
+
+    public void cargarMapaSolicitudes(){
+        gestorSolicitudes.cargarMapaSolicitudes(gestorJson.cargarSolicitudes());
     }
 
     /*CUOTAS*/
@@ -122,5 +130,26 @@ public class SimuladorCredito {
 
     public void pagarCuota(SolicitudCredito s, int id){
         gestorCuotas.pagarCuota(s, id);
+    }
+
+    public void cargarMapaCuotas(){
+        gestorCuotas.cargarMapaCuotas(gestorJson.cargarCuotas());
+    }
+
+    public void cargar(){
+        //El constructor básicamente ya crea estas variables, no es necesario instanciarlas desde main
+            cargarMapaUsuarios();
+            cargarMapaSolicitudes();
+            cargarMapaCuotas();
+            cargarUsuarios();
+            cargarSolicitudesJs();
+            cargarCuotas();
+
+    }
+
+    public void guardar(){
+        guardarUsuarioJs();
+        guardarSolicitudJss();
+        guardarCuotasJss();
     }
 }

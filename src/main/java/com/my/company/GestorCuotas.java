@@ -1,5 +1,7 @@
 package com.my.company;
 
+import com.fasterxml.jackson.databind.deser.impl.InnerClassProperty;
+
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;
@@ -129,6 +131,10 @@ public class GestorCuotas {
     //Para poder acceder a la lista de cuotas desde gestor cuotas
     public Map<Integer, List<Cuota>> obtenerMapaCuotas(){
         return new HashMap<>(listaCuotas);
+    }
+
+    public void cargarMapaCuotas(Map<Integer, List<Cuota>> listaCuotasM){
+        this.listaCuotas = listaCuotasM;
     }
 
 

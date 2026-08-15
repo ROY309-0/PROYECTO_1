@@ -62,7 +62,10 @@ public class GestorSolicitudes {
         return listaSolicitudes.get(u.getId());
     }
 
-
+    //Para rellenar el mapa de solicitudes
+    public void cargarMapaSolicitudes(Map<Integer, List<SolicitudCredito>> listaSolicitudesM){
+        this.listaSolicitudes = listaSolicitudesM;
+    }
 
     public EstadoSolicitud estadoSolicitud(SolicitudCredito s){
         return s.getEstado();
