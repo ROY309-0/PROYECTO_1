@@ -1,7 +1,6 @@
 package com.my.company;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

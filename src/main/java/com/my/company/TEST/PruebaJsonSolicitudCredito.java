@@ -1,9 +1,7 @@
 package com.my.company.TEST;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.my.company.SolicitudCredito;
 import com.my.company.Usuario;
-
 import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;

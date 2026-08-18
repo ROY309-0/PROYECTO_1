@@ -1,7 +1,4 @@
 package com.my.company;
-
-import com.fasterxml.jackson.databind.deser.impl.InnerClassProperty;
-
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.time.LocalDate;

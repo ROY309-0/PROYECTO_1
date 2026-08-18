@@ -1,9 +1,7 @@
 package com.my.company.TEST.PERSISTENCIA;
-
 import com.my.company.SimuladorCredito;
 import com.my.company.SolicitudCredito;
 import com.my.company.Usuario;
-
 import java.math.BigDecimal;
 import java.time.LocalDate;
 

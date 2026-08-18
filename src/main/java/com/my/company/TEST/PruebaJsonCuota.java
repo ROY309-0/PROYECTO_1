@@ -3,7 +3,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.my.company.Cuota;
 import com.my.company.SolicitudCredito;
-
 import javax.swing.*;
 import java.io.File;
 import java.io.IOException;
